@@ -1,0 +1,33 @@
+### Variables
+@baseUrl = http://localhost:5000/api/auth
+@authToken = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY5ZTNiZjY1YWIwMGY3NWQwN2ZiYjI2MSIsImlhdCI6MTc3NjUzMzkxMSwiZXhwIjoxNzc2NTM3NTExfQ.6C9RqvizcLzLKyll8zSB2efUxFdHfvhfYhpNV3Uw8eo
+
+### 1. Register a New User
+POST {{baseUrl}}/signup
+Content-Type: application/json
+
+{
+    "username": "miki_dev",
+    "email": "miki@example.com",
+    "password": "SecurePassword123"
+}
+
+###
+
+### 2. Login to get JWT Token
+# After running this, copy the "token" value from the response
+POST {{baseUrl}}/login
+Content-Type: application/json
+
+{
+    "email": "miki@example.com",
+    "password": "SecurePassword123"
+}
+
+###
+
+### 3. Access Protected Route
+# Replace the @authToken variable at the top with your real token 
+# or paste it directly after 'Bearer'
+GET http://localhost:5000/api/protected
+Authorization: Bearer {{authToken}}
